@@ -44,6 +44,10 @@ public final class TopologicalSorter {
 
         if (edges.containsKey(vertex)) {
             for (String nextVertex : edges.get(vertex)) {
+                if (!visited.containsKey(nextVertex)) {
+                    continue;
+                }
+
                 if (inRecursionStack.get(nextVertex)) {
                     throw new IllegalStateException("The given graph has a cycle.");
                 }
